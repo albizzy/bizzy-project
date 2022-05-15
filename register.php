@@ -1,9 +1,8 @@
 <!-- php codes -->
 <?php
-    include 'databaseConn.php';
+    include 'databaseConn.php'; // database connection
 
-    // passing values to the database
-
+    // check if the user is logged in
     if(isset($_POST['send'])) {
         $firstName=$_POST['firstname'];
         $lastName=$_POST['lastname'];
@@ -14,16 +13,14 @@
         // Inserting user input into the database
         $sql= "INSERT INTO sign (firstname,lastname,phone,email,pass) VALUES ('$firstName','$lastName','$email','$phoneNo','$pass')";
 
-        //connecting sql query and the database
+        // checking if the query is successful or not
         $connection=mysqli_query($link, $sql);
 
-        // conditions
-
+        // if successful, redirect to login page
         if ($connection) {
             header("location:login.php");
             die();
         }
-
         else {
             echo "Sign up attempt was unsuccessful!";
         }
