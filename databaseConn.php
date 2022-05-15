@@ -2,13 +2,13 @@
     define("SERVER", "localhost");
     define("USER", "root");
     define("PASS", "");
-    define("DB", "bizzy-database");
+    define("DB", "mydb");
     
     // Create connection
-    $conn = mysqli_connect(SERVER, USER, PASS, DB);
+    $link = mysqli_connect(SERVER, USER, PASS, DB) or die();
 
     // Check connection
-    if (!$conn) {
+    if (!$link) {
       die("Connection failed: " . mysqli_connect_error());
     }
     
@@ -22,11 +22,11 @@
     pass VARCHAR(300) NOT NULL,
     )";
     
-    if (mysqli_query($conn, $sql)) {
+    if (mysqli_query($link, $sql)) {
       echo "Table Users created successfully";
     } else {
-      echo "Error creating table: " . mysqli_error($conn);
+      echo "Error creating table: " . mysqli_error($link);
     }
     
-    mysqli_close($conn);
+    mysqli_close($link);
 ?>
