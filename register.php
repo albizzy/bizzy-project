@@ -12,7 +12,7 @@
         $pass=password_hash($_POST['pass'],PASSWORD_DEFAULT);
 
         // Inserting user input into the database
-        $sql= "INSERT INTO users (firstname,lastname,phone,email,pass) VALUES ('$firstName','$lastName','$phoneNo','$email','$pass')";
+        $sql= "INSERT INTO users (firstname,lastname,email,phone,pass) VALUES ('$firstName','$lastName','$email','$phoneNo','$pass')";
 
         //connecting sql query and the database
         $connection=mysqli_query($link_to_database, $sql);
