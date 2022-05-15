@@ -2,10 +2,10 @@
     define("SERVER", "localhost");
     define("USER", "root");
     define("PASS", "");
-    define("DB", "");
+    define("DB", "bizzy-database");
     
     // Create connection
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    $conn = mysqli_connect(SERVER, USER, PASS, DB);
 
     // Check connection
     if (!$conn) {
