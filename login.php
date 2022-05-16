@@ -5,6 +5,13 @@
     if(isset($_POST('send'))) {
         $email=$_POST['email'];
         $pass=$_POST['pass'];
+
+        // Inserting user input into the database
+        $sql = "SELECT pass FROM sign WHERE email = '$email'";
+        $conn = mysqli($link, $sql);
+
+        // checking if the query is successful or not
+        $getRow = mysqli_fetch_array($conn);
     }
 ?>
 
@@ -20,7 +27,7 @@
 </head>
 
 <body>
-    <form action="home.php" method="POST">
+    <form action="login.php" method="POST">
         <h1>Login to your account</h1>
         <input type="email" name="email" id="email" placeholder="Email"><br>
         <input type="password" name="pass" id="pass" placeholder="Password"><br>
