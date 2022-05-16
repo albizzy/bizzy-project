@@ -2,16 +2,27 @@
     include 'databaseConn.php'; // database connection
 
     // check if the user is logged in
-    if(isset($_POST('send'))) {
+    if(isset($_POST['send'])) {
         $email=$_POST['email'];
         $pass=$_POST['pass'];
 
         // Inserting user input into the database
         $sql = "SELECT pass FROM sign WHERE email = '$email'";
-        $conn = mysqli($link, $sql);
+        $conn = mysqli_query($link, $sql);
 
         // checking if the query is successful or not
-        $getRow = mysqli_fetch_array($conn);
+        $row = mysqli_fetch_array($conn);
+
+        $getPass = $row['pass'];
+
+        if(password_verify($pass, $getPass)) {
+            header("Location: home.php");
+            die();
+        }
+
+        else {
+            echo "Login was unsuccessfull!";
+        }
     }
 ?>
 
@@ -31,7 +42,7 @@
         <h1>Login to your account</h1>
         <input type="email" name="email" id="email" placeholder="Email"><br>
         <input type="password" name="pass" id="pass" placeholder="Password"><br>
-        <input type="submit" name="send" value="Sign Up">
+        <input type="submit" name="send" value="Log in">
     </form>
 </body>
 
