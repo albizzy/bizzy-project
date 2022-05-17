@@ -13,7 +13,7 @@
         // checking if the query is successful or not
         $row = mysqli_fetch_array($conn);
 
-        $getPass = $row['pass'];
+        $getPass=$row['pass'];
 
         if(password_verify($pass, $getPass)) {
             header("Location: home.php");
